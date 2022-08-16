@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const collectionController = require('../controllers/collectionController');
+const collectionController = require("../controllers/collectionController");
 
-router.get('/', collectionController.getToday);
+router.get("/", collectionController.getToday);
 
 module.exports = router;

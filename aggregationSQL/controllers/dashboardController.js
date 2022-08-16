@@ -1,9 +1,9 @@
-const dashboardModel = require('../models/dashboardModel');
+const dashboardModel = require("../models/dashboardModel");
 
 class DashboardController {
-    async get(req, res) {
-        dashboardModel.getCountsTasksAndLists().then(lists => res.json(lists));
-    }
+  async get(req, res) {
+    dashboardModel.getCountsTasksAndLists().then((lists) => res.json(lists));
+  }
 }
 
-module.exports = new DashboardController()
+module.exports = new DashboardController();

@@ -1,9 +1,9 @@
-const collectionModel = require('../models/collectionModel');
+const collectionModel = require("../models/collectionModel");
 
 class CollectionController {
-    async getToday(req, res) {
-        collectionModel.getAllTasksForToday().then(lists => res.json(lists));
-    }
+  async getToday(req, res) {
+    collectionModel.getAllTasksForToday().then((lists) => res.json(lists));
+  }
 }
 
-module.exports = new CollectionController()
+module.exports = new CollectionController();

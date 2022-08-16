@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const router = require('./routes');
+const router = require("./routes");
 
 function logRequest({ method, url }, res, next) {
-    console.log(`[${new Date().toISOString()}] ${method} ${url}`);
-    next();
+  console.log(`[${new Date().toISOString()}] ${method} ${url}`);
+  next();
 }
 
 app.use(logRequest);
