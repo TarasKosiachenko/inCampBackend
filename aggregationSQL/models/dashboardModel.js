@@ -2,17 +2,21 @@ const database = require("../database");
 
 class DashboardsModel {
   async getCountsTasksAndLists() {
-    const getCountofTasksOnDueDate = await (
-      await database.query(
-        "SELECT COUNT(*)::INT  AS today FROM tasks WHERE due_date = '2022-08-15' AND done=false "
-      )
-    ).rows;
+    const getCountofTasksOnDueDate = await await database("tasks")
+      .where("due_date", "now()")
+      .andWhere("done", "false")
+      .count("*");
 
-    const getListsTasksUndone = await (
-      await database.query(
-        "SELECT lists.id, lists.title, COUNT(tasks.done=false OR null)::INT AS undone FROM tasks RIGHT JOIN lists ON tasks.list_id = lists.id  GROUP BY lists.id"
+    const getListsTasksUndone = await await database("tasks")
+      .select(
+        "lists.id",
+        "lists.title",
+        database.raw("COUNT(tasks.done=false OR null)::INT AS undone")
       )
-    ).rows;
+      .rightJoin("lists", function () {
+        this.on("tasks.list_id", "=", "lists.id");
+      })
+      .groupBy("lists.id");
 
     const [todayTaskRes, list] = await Promise.all([
       getCountofTasksOnDueDate[0],

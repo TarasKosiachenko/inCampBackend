@@ -2,12 +2,14 @@ const database = require("../database");
 
 class CollectionModel {
   getAllTasksForToday() {
-    return database
-      .query(
-        "SELECT *, lists.title  FROM tasks LEFT JOIN lists ON lists.id=list_id WHERE due_date = DATE(NOW())"
-      )
+    return database("tasks")
+      .select("*", "lists.title")
+      .leftJoin("lists", function () {
+        this.on("lists.id", "=", "list_id");
+      })
+      .where("due_date", "2022-08-16")
       .then((result) =>
-        result.rows.map(
+        result.map(
           ({ id, name, description, due_date, done, title, list_id }) => {
             return {
               id,

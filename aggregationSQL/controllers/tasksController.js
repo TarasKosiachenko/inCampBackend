@@ -17,7 +17,7 @@ class TasksController {
     const { list_id, name, description, done, due_date } = req.body;
     list_id
       ? tasksModel
-          .createTask(list_id, name, description, done, due_date)
+          .createTask({ list_id, name, description, done, due_date })
           .then((task) => res.json(task))
       : res.status("400").json({ Error: "List ID not found" });
   }
