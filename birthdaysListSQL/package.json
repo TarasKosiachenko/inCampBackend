@@ -1,0 +1,14 @@
+{
+  "name": "birthdayslistsql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "connectSQL.js",
+  "scripts": {
+    "start": "node connectSQL.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.7.3"
+  }
+}
