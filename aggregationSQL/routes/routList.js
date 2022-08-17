@@ -13,7 +13,7 @@ router.post("/", listsController.createList);
 
 router.put("/:id", listsController.replacingList);
 
-router.patch("/:id", listsController.replacingList);
+router.patch("/:id", listsController.updateList);
 
 router.delete("/:id", listsController.deleteList);
 

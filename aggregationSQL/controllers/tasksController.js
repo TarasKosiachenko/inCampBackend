@@ -14,24 +14,24 @@ class TasksController {
   }
 
   async createTask(req, res) {
-    const { list_id, name, description, done, due_date } = req.body;
-    list_id
+    const body = req.body;
+    body.list_id
       ? tasksModel
-          .createTask({ list_id, name, description, done, due_date })
+          .createTask(body)
           .then((task) => res.json(task))
       : res.status("400").json({ Error: "List ID not found" });
   }
 
   async replacingTask(req, res) {
     const task_id = parseInt(req.params.id);
-    let { list_id, name, description, done, due_date } = req.body;
+    let body = req.body;
 
-    if (list_id === undefined) {
+    if (body.list_id === undefined) {
       return res.status("400").json({ Error: "List ID not found" });
     }
 
     tasksModel
-      .replacingTask(task_id, list_id, name, description, done, due_date)
+      .replacingTask(task_id, body)
       .then((task) => res.json(task));
   }
 

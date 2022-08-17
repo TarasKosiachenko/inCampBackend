@@ -31,11 +31,11 @@ class ListsController {
     listsModel.replacingList(list_id, title).then((list) => res.json(list));
   }
 
-  // async updateList(req, res) {
-  //     const list_id = parseInt(req.params.id);
-  //     const { title } = req.body;
-  //     listsModel.replacingList(list_id, title).then(list => res.json(list));
-  // };
+  async updateList(req, res) {
+      const list_id = parseInt(req.params.id);
+      const { title } = req.body;
+      listsModel.replacingList(list_id, title).then(list => res.json(list));
+  };
 
   async deleteList(req, res) {
     const list_id = parseInt(req.params.id);
