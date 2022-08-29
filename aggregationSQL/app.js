@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const router = require("./routes");
 
 function logRequest({ method, url }, res, next) {
@@ -8,6 +9,7 @@ function logRequest({ method, url }, res, next) {
 }
 
 app.use(logRequest);
+app.use(cors());
 app.use(express.json());
 app.use(router);
 
