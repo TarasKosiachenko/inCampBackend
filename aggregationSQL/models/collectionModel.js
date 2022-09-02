@@ -4,7 +4,7 @@ class CollectionModel {
   getAllTasksForToday() {
     return database
       .query(
-        "SELECT *, lists.title  FROM tasks LEFT JOIN lists ON lists.id=list_id WHERE due_date = DATE(NOW())"
+        "SELECT *, tasks.id, lists.title  FROM tasks LEFT JOIN lists ON lists.id=list_id WHERE due_date = DATE(NOW())"
       )
       .then((result) =>
         result.rows.map(
