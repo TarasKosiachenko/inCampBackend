@@ -45,7 +45,7 @@ class TasksModel {
 
   deleteTask(task_id) {
     return database
-      .query("DELETE FROM tasks WHERE id = $1", [task_id])
+      .query("DELETE FROM tasks WHERE id = $1 RETURNING *", [task_id])
       .then((data) => data.rows);
   }
 }

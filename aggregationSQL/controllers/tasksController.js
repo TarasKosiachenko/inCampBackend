@@ -46,9 +46,10 @@ class TasksController {
 
   async deleteTask(req, res) {
     const task_id = parseInt(req.params.id);
+    // const task =  
     tasksModel
       .deleteTask(task_id)
-      .then((task) => res.json("Task has been deleted"));
+      .then((task) => res.json(task));
   }
 }
 
