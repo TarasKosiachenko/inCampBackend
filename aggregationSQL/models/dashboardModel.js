@@ -4,7 +4,7 @@ class DashboardsModel {
   async getCountsTasksAndLists() {
     const getCountofTasksOnDueDate = await (
       await database.query(
-        "SELECT COUNT(*)::INT  AS today FROM tasks WHERE due_date = '2022-08-15' AND done=false "
+        "SELECT COUNT(*)::INT  AS today FROM tasks WHERE due_date = DATE(NOW()) AND done=false "
       )
     ).rows;
 
@@ -14,9 +14,17 @@ class DashboardsModel {
       )
     ).rows;
 
+    // const promise3 = await (
+    //   await database.query(
+    //     `   SELECT tasks.id 
+    //         FROM tasks 
+    //         WHERE due_date <= DATE(NOW()) AND done = false`
+    //   )
+    // ).rows;
+
     const [todayTaskRes, list] = await Promise.all([
       getCountofTasksOnDueDate[0],
-      getListsTasksUndone,
+      getListsTasksUndone
     ]);
 
     return {
