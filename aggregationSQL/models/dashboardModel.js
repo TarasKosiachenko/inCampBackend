@@ -14,14 +14,6 @@ class DashboardsModel {
       )
     ).rows;
 
-    // const promise3 = await (
-    //   await database.query(
-    //     `   SELECT tasks.id 
-    //         FROM tasks 
-    //         WHERE due_date <= DATE(NOW()) AND done = false`
-    //   )
-    // ).rows;
-
     const [todayTaskRes, list] = await Promise.all([
       getCountofTasksOnDueDate[0],
       getListsTasksUndone
