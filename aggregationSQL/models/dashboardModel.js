@@ -10,7 +10,7 @@ class DashboardsModel {
 
     const getListsTasksUndone = await (
       await database.query(
-        "SELECT lists.id, lists.title, COUNT(tasks.done=false OR null)::INT AS undone FROM tasks RIGHT JOIN lists ON tasks.list_id = lists.id  GROUP BY lists.id"
+        "SELECT lists.id, lists.title, COUNT(tasks.done=false OR null)::INT AS undone FROM tasks RIGHT JOIN lists ON tasks.list_id = lists.id  GROUP BY lists.id ORDER BY id"
       )
     ).rows;
 
